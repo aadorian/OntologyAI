@@ -2,16 +2,18 @@ import React, { useState, useEffect, useMemo } from 'react';
 import ForceGraph from './components/ForceGraph';
 import Sidebar from './components/Sidebar';
 import ChatInterface from './components/ChatInterface';
+import DLQueryInterface from './components/DLQueryInterface';
 import { parseOntology } from './utils/parser';
 import { ONTOLOGY_XML } from './constants'; // XML from user prompt
 import { GraphNode, GraphData } from './types';
-import { Network, Upload, Info, MessageSquare } from 'lucide-react';
+import { Network, Upload, Info, MessageSquare, BrainCircuit } from 'lucide-react';
 
 const App: React.FC = () => {
   const [data, setData] = useState<GraphData>({ nodes: [], links: [] });
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
   const [xmlInput, setXmlInput] = useState<string>(ONTOLOGY_XML); 
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isDLQueryOpen, setIsDLQueryOpen] = useState(false);
   
   // Parse XML on load or change
   useEffect(() => {
@@ -56,12 +58,21 @@ const App: React.FC = () => {
         
         <div className="flex items-center gap-4">
              <button 
-                onClick={() => setIsChatOpen(!isChatOpen)}
+                onClick={() => { setIsDLQueryOpen(!isDLQueryOpen); setIsChatOpen(false); }}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${isDLQueryOpen ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
+             >
+                <BrainCircuit size={16} />
+                <span>DL Query</span>
+             </button>
+
+             <button 
+                onClick={() => { setIsChatOpen(!isChatOpen); setIsDLQueryOpen(false); }}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${isChatOpen ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
              >
                 <MessageSquare size={16} />
                 <span>SPARQL Chat</span>
              </button>
+             
              <label className="flex items-center gap-2 cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors px-3 py-1.5 rounded-md text-sm font-medium text-slate-700">
                 <Upload size={16} />
                 <span>Load RDF/XML</span>
@@ -97,6 +108,13 @@ const App: React.FC = () => {
             xmlData={xmlInput} 
             isOpen={isChatOpen} 
             onClose={() => setIsChatOpen(false)} 
+        />
+
+        {/* DL Query Interface */}
+        <DLQueryInterface 
+            xmlData={xmlInput} 
+            isOpen={isDLQueryOpen} 
+            onClose={() => setIsDLQueryOpen(false)} 
         />
         
         {/* Stats Overlay */}

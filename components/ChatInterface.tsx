@@ -15,16 +15,16 @@ interface Message {
 }
 
 const EXAMPLE_QUERIES = [
-  "Who are the researchers participating in the project?",
-  "List all interviews and their objectives.",
-  "Show me all questions asked in 'interview1'.",
-  "What bibliography references are used in the project?",
-  "List all answers that have the metadata 'Uruguay'.",
-  "Find the theoretical framework and its description.",
-  "What descriptive categories are used in interpretations?",
-  "Show connection between Methodological Strategy and Interviews.",
-  "List all interview answers provided by female students.",
-  "Get the description of the subject 'subject1'."
+  "List all Research Projects and their Researchers.",
+  "What are the objectives of the 'Qualitative Education Study'?",
+  "Which Theoretical Framework is being used?",
+  "What research questions are posed?",
+  "Show the methods applied by researcher 'Dr. Smith'.",
+  "List all data records collected from 'University Students'.",
+  "What codes emerged from the 'Initial Coding Interpretation'?",
+  "Find the Core Category of the grounded theory.",
+  "Show the relationship between Analytic and Descriptive categories.",
+  "List all Bibliography entries and what records they refer to."
 ];
 
 const ChatInterface: React.FC<ChatInterfaceProps> = ({ xmlData, isOpen, onClose }) => {

@@ -1,373 +1,507 @@
 export const ONTOLOGY_XML = `<?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#"
-     xml:base="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52"
+<rdf:RDF xmlns="http://www.semanticweb.org/grounded_research_ontology#"
+     xml:base="http://www.semanticweb.org/grounded_research_ontology"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:untitled-ontology-27="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#">
-    <owl:Ontology rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52"/>
-
-    <!-- Object Properties -->
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Aplica_una_o_varias">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#MethodologicalStrategy"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Technique"/>
-        <rdfs:label>appliesTechnique</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#De_interpretacion">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_a_informacion"/>
-        <rdfs:label>fromInterpretation</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Define">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Project"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#MethodologicalStrategy"/>
-        <rdfs:label>definesStrategy</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Es_de_entrevista">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_pregunta"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Question"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interview"/>
-        <rdfs:label>fromInterview</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Es_generado_por">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Genera"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TechniqueOverSubjectOrObject"/>
-        <rdfs:label>isGeneratedBy</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Es_parte_del_marco_teorico">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Bibliography"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TheoreticalFramework"/>
-        <rdfs:label>isBibliographyOf</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Es_participante">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Project"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Researcher"/>
-        <rdfs:label>hasResearcher</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Es_participante_de">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Participant"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Subject"/>
-        <rdfs:label>isdParticipantOf</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Genera">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TechniqueOverSubjectOrObject"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-        <rdfs:label>generates</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Impacta">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TheoreticalFramework"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DescriptiveCategory"/>
-        <rdfs:label>impacts</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Inf_insumo_para_producir">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Information"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Report"/>
-        <rdfs:label>contributesTo</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Met_insumo_para_producir">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Metadata"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Report"/>
-        <rdfs:label>isMetadataReport</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Metadato">
-        <rdfs:domain>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DescriptiveCategory"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:domain>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Metadata"/>
-        <rdfs:label>hasMetadata</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Pertenece_a">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interpretation"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Researcher"/>
-        <rdfs:label>belongsTo</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_a_esquema_de_clasificacion_descriptivo">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#AnalyticCategory"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DescriptiveCategory"/>
-        <rdfs:label>correspondsToDescriptiveCategory</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_a_informacion">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interpretation"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Information"/>
-        <rdfs:label>generatesInformation</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_a_sujeto_u_objeto">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TechniqueOverSubjectOrObject"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#SubjectOrObject"/>
-        <rdfs:label>toSubjectObject</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_a_tecnica">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_a_tecnica_subre_sujeto_u_objeto"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TechniqueOverSubjectOrObject"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Technique"/>
-        <rdfs:label>isApplicationTechnique</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_a_tecnica_subre_sujeto_u_objeto">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Technique"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TechniqueOverSubjectOrObject"/>
-        <rdfs:label>hasSubjectObjectApplication</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Relacionado_al_registro">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Se_interpreta"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interpretation"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-        <rdfs:label>isInterpretationOf</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Responde_a_entrevista">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_respuestas"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InterviewAnswer"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interview"/>
-        <rdfs:label>answersToInterview</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Responde_a_pregunta">
-        <owl:inverseOf rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TIene_respuesta"/>
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InterviewAnswer"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Question"/>
-        <rdfs:label>answersToQuestion</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Se_aplica_en">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Technique"/>
-        <rdfs:range>
-            <owl:Class>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-                    <rdf:Description rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#SubjectOrObject"/>
-                </owl:unionOf>
-            </owl:Class>
-        </rdfs:range>
-        <rdfs:label>isAppliedIn</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Se_interpreta">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interpretation"/>
-        <rdfs:label>isInterpreted</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Soportado_en">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Support"/>
-        <rdfs:label>supportedBy</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TIene_respuesta">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Question"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InterviewAnswer"/>
-        <rdfs:label>hasAnswer</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_esquema_de_clasificacion_analitica">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Information"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#AnalyticCategory"/>
-        <rdfs:label>hasAnalyticCategory</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_esquema_de_clasificacion_descriptiva">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interpretation"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DescriptiveCategory"/>
-        <rdfs:label>hasDescriptiveCategory</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_marco_teorico">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Project"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TheoreticalFramework"/>
-        <rdfs:label>hasTheoreticalFrm</rdfs:label>
-    </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_objetivo">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Project"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Objective"/>
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/grounded_research_ontology"/>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasObjective">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchProject"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchObjective"/>
         <rdfs:label>hasObjective</rdfs:label>
     </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_pregunta">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interview"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Question"/>
-        <rdfs:label>hasQuestion</rdfs:label>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasTheoreticalFramework">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchProject"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#TheoreticalFramework"/>
+        <rdfs:label>hasTheoreticalFramework</rdfs:label>
     </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Tiene_respuestas">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interview"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InterviewAnswer"/>
-        <rdfs:label>hasInterviewAnswer</rdfs:label>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasResearcher">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchProject"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Researcher"/>
+        <rdfs:label>hasResearcher</rdfs:label>
     </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#categoria_superior">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DescriptiveCategory"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DescriptiveCategory"/>
-        <rdfs:label>hasHigherCategory</rdfs:label>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#selects">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Researcher"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#FieldOfStudy"/>
+        <rdfs:label>selects</rdfs:label>
     </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Cumple_con_/_Alcanza">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Report"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Objective"/>
-        <rdfs:label>meetsObjective</rdfs:label>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#appliesMethod">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Researcher"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Method"/>
+        <rdfs:label>appliesMethod</rdfs:label>
     </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#Se_reformula">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#Reformulation"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#ProjectFormulation"/>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#poses">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchObjective"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchQuestion"/>
+        <rdfs:label>poses</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasSubjectObjectApplication">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#FieldOfStudy"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#SubjectObject"/>
+        <rdfs:label>hasSubjectObjectApplication</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#isReformulated">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchQuestion"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Reflexivity"/>
         <rdfs:label>isReformulated</rdfs:label>
     </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#Tiene_bibliografia">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Project"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Bibliography"/>
-        <rdfs:label>hasBibliography</rdfs:label>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#refersTo">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Bibliography"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record"/>
+        <rdfs:label>refersTo</rdfs:label>
     </owl:ObjectProperty>
-
-    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#toReformulation">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Finding"/>
-        <rdfs:range rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#Reformulation"/>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasSubjectObjects">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#SubjectObject"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record"/>
+        <rdfs:label>hasSubjectObjects</rdfs:label>
     </owl:ObjectProperty>
-
-    <!-- Classes -->
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#AnalyticCategory"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Bibliography"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DataCollection"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DescriptiveCategory"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#DocumentAnalysis"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#EnrichedDocument"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#FieldNote"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Finding"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Information"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interpretation"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interview"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InterviewAnswer"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Metadata"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#MethodologicalStrategy"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Object"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Objective"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Observation"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Participant"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Project"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#ProjectFormulation"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Question"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Record"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Report"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Researcher"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Subject"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#SubjectOrObject"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Support"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Technique"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TechniqueOverSubjectOrObject"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Text"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TheoreticalFramework"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Video"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#Audio"/>
-    <owl:Class rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#Reformulation"/>
-
-    <!-- Individuals -->
-    <!-- (Including all data individuals provided in the prompt) -->
     
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InvestigacionEstrategiaEstudio">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Project"/>
-        <untitled-ontology-27:Define rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#EstrategiaMetodologica1"/>
-        <untitled-ontology-27:Es_participante rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador1"/>
-        <untitled-ontology-27:Es_participante rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador2"/>
-        <untitled-ontology-27:Es_participante rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador3"/>
-        <untitled-ontology-27:Es_participante rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador4"/>
-        <untitled-ontology-27:Tiene_marco_teorico rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#MarcoTeorico1"/>
-        <untitled-ontology-27:Tiene_objetivo rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#objetivo1"/>
-        <untitled-ontology-27:Tiene_objetivo rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#objetivo2"/>
-        <untitled-ontology-27:Tiene_objetivo rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#objetivo3"/>
-        <Tiene_bibliografia rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Bibliografia1"/>
-        <Tiene_bibliografia rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#Bibliografia2"/>
-        <untitled-ontology-27:Nombre>Study and reading practices of communication students</untitled-ontology-27:Nombre>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Researcher"/>
-        <untitled-ontology-27:Nombre>Soledad Morales</untitled-ontology-27:Nombre>
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#isInterpreted">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Interpretation"/>
+        <rdfs:label>isInterpreted</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#isApplied">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#SubjectObject"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#MethodOverSubjectObject"/>
+        <rdfs:label>isApplied</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#toReformulation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Reflexivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchQuestion"/>
+        <rdfs:label>toReformulation</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#giveResponseTo">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Reflexivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report"/>
+        <rdfs:label>giveResponseTo</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasRelatedWork">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Reflexivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report"/>
+        <rdfs:label>hasRelatedWork</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasMethodology">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Reflexivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report"/>
+        <rdfs:label>hasMethodology</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasCodes">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Interpretation"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:label>hasCodes</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#isReported">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#GroundedTheory"/>
+        <rdfs:label>isReported</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasElaboratedTheory">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#GroundedTheory"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:label>hasElaboratedTheory</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasRelativeAnalyticCategory">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:label>hasRelativeAnalyticCategory</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasElaboratedAnalyticCategory">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory"/>
+        <rdfs:label>hasElaboratedAnalyticCategory</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasRelatedDescriptiveCategory">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory"/>
+        <rdfs:label>hasRelatedDescriptiveCategory</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasElaboratedDescriptiveCategory">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:label>hasElaboratedDescriptiveCategory</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/grounded_research_ontology#hasRelatedCode">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:label>hasRelatedCode</rdfs:label>
+    </owl:ObjectProperty>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <!-- Project Formulation Phase -->
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#ResearchProject">
+        <rdfs:label>Research Project</rdfs:label>
+        <rdfs:comment>Central concept representing a research project in the formulation phase</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#ResearchObjective">
+        <rdfs:label>Research Objective</rdfs:label>
+        <rdfs:comment>Objective of the research project</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#TheoreticalFramework">
+        <rdfs:label>Theoretical Framework</rdfs:label>
+        <rdfs:comment>Theoretical framework used in the research project</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Researcher">
+        <rdfs:label>Researcher</rdfs:label>
+        <rdfs:comment>Person conducting the research</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#FieldOfStudy">
+        <rdfs:label>Field Of Study</rdfs:label>
+        <rdfs:comment>Field or domain of study selected by the researcher</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Method">
+        <rdfs:label>Method</rdfs:label>
+        <rdfs:comment>Theoretical Sampling (Guiding Principle): A process which allows the researcher to collect, code, and analyze the data and then decide what data to collect next.</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Interview">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Method"/>
+        <rdfs:label>Interview</rdfs:label>
+        <rdfs:comment>Interview as a specific research method</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#ResearchQuestion">
+        <rdfs:label>Research Question</rdfs:label>
+        <rdfs:comment>Research question posed by the research objective</rdfs:comment>
+    </owl:Class>
+    
+    <!-- Data Collection Phase -->
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Bibliography">
+        <rdfs:label>Bibliography</rdfs:label>
+        <rdfs:comment>Bibliography that refers to records</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#SubjectObject">
+        <rdfs:label>Subject | Object</rdfs:label>
+        <rdfs:comment>Subject or object of study in data collection</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Record">
+        <rdfs:label>Record</rdfs:label>
+        <rdfs:comment>Base class for all types of records collected during research</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#InterviewTranscript">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record"/>
+        <rdfs:label>Interview Transcript</rdfs:label>
+        <rdfs:comment>Transcript of an interview as a type of record</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#FieldNotes">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record"/>
+        <rdfs:label>Field Notes</rdfs:label>
+        <rdfs:comment>Field notes as a type of record</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#EnrichedDocument">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record"/>
+        <rdfs:label>Enriched Document</rdfs:label>
+        <rdfs:comment>Enriched document as a type of record</rdfs:comment>
+    </owl:Class>
+    
+    <!-- Consensus Phase -->
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Reflexivity">
+        <rdfs:label>Reflexivity</rdfs:label>
+        <rdfs:comment>Reflexive process in the consensus phase</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#MethodOverSubjectObject">
+        <rdfs:label>Method Over Subject | Object</rdfs:label>
+        <rdfs:comment>Method applied over subject or object</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Interpretation">
+        <rdfs:label>Interpretation</rdfs:label>
+        <rdfs:comment>Memoing: The ongoing process of writing theoretical notes throughout the GT process. Memos capture the conceptual links between categories as the researcher notes down their reflections on different categories.</rdfs:comment>
+    </owl:Class>
+    
+    <!-- Finding Phase -->
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Report">
+        <rdfs:label>Report</rdfs:label>
+        <rdfs:comment>Write-up: The final step in GT is writing up the theory, which follows the theoretical outline generated as a result of sorting and theoretical coding.</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#GroundedTheory">
+        <rdfs:label>Grounded Theory</rdfs:label>
+        <rdfs:comment>Theoretical Sampling (Best Process Match): A process which allows the researcher to collect, code, and analyze the data and then decide what data to collect next.</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory">
+        <rdfs:label>Analytic Category</rdfs:label>
+        <rdfs:comment>Category: The next level of abstraction produced as a result of applying constant comparison on concepts.</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory">
+        <rdfs:label>Descriptive Category</rdfs:label>
+        <rdfs:comment>Category: The next level of abstraction produced as a result of applying constant comparison on concepts.</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#Code">
+        <rdfs:label>Code</rdfs:label>
+        <rdfs:comment>A phrase that summarizes the main points in 2 or 3 words.</rdfs:comment>
+    </owl:Class>
+    
+    <owl:Class rdf:about="http://www.semanticweb.org/grounded_research_ontology#CoreCategory">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:label>Core Category</rdfs:label>
+        <rdfs:comment>Several categories emerge as a result of data analysis and the one that is able to account for most variations in the data and relates meaningfully and easily with other categories is called the Core Category (Glaser 1978).</rdfs:comment>
+    </owl:Class>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals - Complete Research Project Example
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    <!-- Project Formulation Phase Individuals -->
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Project_QualitativeEducationStudy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchProject"/>
+        <rdfs:label>Qualitative Education Study</rdfs:label>
+        <hasObjective rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Objective_UnderstandStudentMotivation"/>
+        <hasTheoreticalFramework rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Framework_GroundedTheory"/>
+        <hasResearcher rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Researcher_DrSmith"/>
     </owl:NamedIndividual>
     
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Researcher"/>
-        <untitled-ontology-27:Nombre>Magela Cabrera</untitled-ontology-27:Nombre>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador3">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Researcher"/>
-        <untitled-ontology-27:Nombre>Rosalía Winocur</untitled-ontology-27:Nombre>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Investigador4">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Researcher"/>
-        <untitled-ontology-27:Nombre>Camila Rojas</untitled-ontology-27:Nombre>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#entrevista1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interview"/>
-        <untitled-ontology-27:Tiene_pregunta rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#pregunta1"/>
-        <untitled-ontology-27:Tiene_pregunta rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#pregunta2"/>
-        <untitled-ontology-27:Objetivo>To reconstruct the perception that students have about their condition of being young.</untitled-ontology-27:Objetivo>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#entrevista2">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Interview"/>
-        <untitled-ontology-27:Objetivo>To explore the study and reading habits of students.</untitled-ontology-27:Objetivo>
-    </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#dato1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InterviewAnswer"/>
-        <untitled-ontology-27:Valor>What defines me as a young person are a series of interests and forms of consumption...</untitled-ontology-27:Valor>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Objective_UnderstandStudentMotivation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchObjective"/>
+        <rdfs:label>Understand Student Motivation</rdfs:label>
+        <poses rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Question_WhatFactorsMotivate"/>
     </owl:NamedIndividual>
     
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#dato31">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#InterviewAnswer"/>
-        <untitled-ontology-27:Metadato rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#mujer"/>
-        <untitled-ontology-27:Valor>When I was a teenager, I didn’t think I represented what it meant to be young...</untitled-ontology-27:Valor>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Framework_GroundedTheory">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#TheoreticalFramework"/>
+        <rdfs:label>Grounded Theory Framework</rdfs:label>
     </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#mujer">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Metadata"/>
-        <untitled-ontology-27:Valor>female</untitled-ontology-27:Valor>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Researcher_DrSmith">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Researcher"/>
+        <rdfs:label>Dr. Smith</rdfs:label>
+        <selects rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Field_HigherEducation"/>
+        <appliesMethod rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Method_SemiStructuredInterview"/>
     </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#varón">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Metadata"/>
-        <untitled-ontology-27:Valor>male</untitled-ontology-27:Valor>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Field_HigherEducation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#FieldOfStudy"/>
+        <rdfs:label>Higher Education</rdfs:label>
+        <hasSubjectObjectApplication rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Subject_UniversityStudents"/>
     </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Bibliografia1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#Bibliography"/>
-        <untitled-ontology-27:Autor>Beccaria</untitled-ontology-27:Autor>
-        <untitled-ontology-27:Titulo>El vínculo pedagógico en la educación superior...</untitled-ontology-27:Titulo>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Method_SemiStructuredInterview">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Interview"/>
+        <rdfs:label>Semi-Structured Interview</rdfs:label>
     </owl:NamedIndividual>
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/emilio/ontologies/2024/7/untitled-ontology-52#MarcoTeorico1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/emilio/ontologies/2024/5/untitled-ontology-27#TheoreticalFramework"/>
-        <untitled-ontology-27:Valor>TRANSDISCIPLINARITY: it is a research practice based on the articulation of multiple disciplines...</untitled-ontology-27:Valor>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Question_WhatFactorsMotivate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#ResearchQuestion"/>
+        <rdfs:label>What factors motivate university students to engage in their studies?</rdfs:label>
+        <isReformulated rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Reflexivity_InitialAnalysis"/>
     </owl:NamedIndividual>
-
-    <!-- Adding remaining nodes as placeholders for graph consistency if needed, though parser handles it -->
+    
+    <!-- Data Collection Phase Individuals -->
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Bibliography_LiteratureReview">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Bibliography"/>
+        <rdfs:label>Literature Review Bibliography</rdfs:label>
+        <refersTo rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record_PublishedStudy1"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Subject_UniversityStudents">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#SubjectObject"/>
+        <rdfs:label>University Students</rdfs:label>
+        <hasSubjectObjects rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record_Interview1"/>
+        <hasSubjectObjects rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record_Interview2"/>
+        <hasSubjectObjects rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Record_FieldNotes1"/>
+        <isApplied rdf:resource="http://www.semanticweb.org/grounded_research_ontology#MethodApplication_InterviewProtocol"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Record_Interview1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#InterviewTranscript"/>
+        <rdfs:label>Interview Transcript 1 - Student A</rdfs:label>
+        <isInterpreted rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Interpretation_InitialCoding"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Record_Interview2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#InterviewTranscript"/>
+        <rdfs:label>Interview Transcript 2 - Student B</rdfs:label>
+        <isInterpreted rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Interpretation_InitialCoding"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Record_FieldNotes1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#FieldNotes"/>
+        <rdfs:label>Field Notes - Observation Session 1</rdfs:label>
+        <isInterpreted rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Interpretation_InitialCoding"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Record_PublishedStudy1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#EnrichedDocument"/>
+        <rdfs:label>Published Study on Student Engagement</rdfs:label>
+    </owl:NamedIndividual>
+    
+    <!-- Consensus Phase Individuals -->
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Reflexivity_InitialAnalysis">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Reflexivity"/>
+        <rdfs:label>Initial Analysis Reflexivity</rdfs:label>
+        <toReformulation rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Question_WhatFactorsMotivate"/>
+        <giveResponseTo rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report_FinalResearchReport"/>
+        <hasRelatedWork rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report_FinalResearchReport"/>
+        <hasMethodology rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report_FinalResearchReport"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#MethodApplication_InterviewProtocol">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#MethodOverSubjectObject"/>
+        <rdfs:label>Interview Protocol Application</rdfs:label>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Interpretation_InitialCoding">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Interpretation"/>
+        <rdfs:label>Initial Coding Interpretation</rdfs:label>
+        <hasCodes rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_IntrinsicMotivation"/>
+        <hasCodes rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_ExtrinsicMotivation"/>
+        <hasCodes rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_PeerInfluence"/>
+        <hasCodes rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_TeacherSupport"/>
+    </owl:NamedIndividual>
+    
+    <!-- Finding Phase Individuals -->
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Report_FinalResearchReport">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Report"/>
+        <rdfs:label>Final Research Report</rdfs:label>
+        <isReported rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Theory_StudentMotivationModel"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Theory_StudentMotivationModel">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#GroundedTheory"/>
+        <rdfs:label>Student Motivation Model</rdfs:label>
+        <hasElaboratedTheory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_MotivationFactors"/>
+        <hasElaboratedTheory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_ContextualFactors"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_MotivationFactors">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:label>Motivation Factors</rdfs:label>
+        <hasRelativeAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_ContextualFactors"/>
+        <hasElaboratedAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_InternalMotivation"/>
+        <hasElaboratedAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_ExternalMotivation"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_ContextualFactors">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:label>Contextual Factors</rdfs:label>
+        <hasRelativeAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_MotivationFactors"/>
+        <hasElaboratedAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_SocialEnvironment"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_BehavioralPatterns">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory"/>
+        <rdfs:label>Behavioral Patterns</rdfs:label>
+        <hasRelativeAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_MotivationFactors"/>
+        <hasRelativeAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_ContextualFactors"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#CoreCategory_MotivationDynamics">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#CoreCategory"/>
+        <rdfs:label>Motivation Dynamics</rdfs:label>
+        <hasRelativeAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_MotivationFactors"/>
+        <hasRelativeAnalyticCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#AnalyticCategory_ContextualFactors"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_InternalMotivation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory"/>
+        <rdfs:label>Internal Motivation</rdfs:label>
+        <hasRelatedDescriptiveCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_ExternalMotivation"/>
+        <hasElaboratedDescriptiveCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_IntrinsicMotivation"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_ExternalMotivation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory"/>
+        <rdfs:label>External Motivation</rdfs:label>
+        <hasRelatedDescriptiveCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_InternalMotivation"/>
+        <hasElaboratedDescriptiveCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_ExtrinsicMotivation"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory_SocialEnvironment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#DescriptiveCategory"/>
+        <rdfs:label>Social Environment</rdfs:label>
+        <hasElaboratedDescriptiveCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_PeerInfluence"/>
+        <hasElaboratedDescriptiveCategory rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_TeacherSupport"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Code_IntrinsicMotivation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:label>Intrinsic Motivation</rdfs:label>
+        <hasRelatedCode rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_ExtrinsicMotivation"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Code_ExtrinsicMotivation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:label>Extrinsic Motivation</rdfs:label>
+        <hasRelatedCode rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_IntrinsicMotivation"/>
+        <hasRelatedCode rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_PeerInfluence"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Code_PeerInfluence">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:label>Peer Influence</rdfs:label>
+        <hasRelatedCode rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_TeacherSupport"/>
+    </owl:NamedIndividual>
+    
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/grounded_research_ontology#Code_TeacherSupport">
+        <rdf:type rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code"/>
+        <rdfs:label>Teacher Support</rdfs:label>
+        <hasRelatedCode rdf:resource="http://www.semanticweb.org/grounded_research_ontology#Code_PeerInfluence"/>
+    </owl:NamedIndividual>
+    
 </rdf:RDF>`;
