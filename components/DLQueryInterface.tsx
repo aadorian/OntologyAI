@@ -9,16 +9,16 @@ interface DLQueryInterfaceProps {
 }
 
 const DL_EXAMPLES = [
-  "Researcher",
-  "Record",
-  "Researcher and appliesMethod some Interview",
-  "ResearchProject and hasResearcher value Researcher_DrSmith",
-  "SubjectObject and hasSubjectObjects some Record",
-  "Code and hasRelatedCode some Code",
-  "AnalyticCategory or DescriptiveCategory",
-  "Record and isInterpreted some Interpretation",
-  "GroundedTheory and hasElaboratedTheory some AnalyticCategory",
-  "FieldOfStudy and hasSubjectObjectApplication some SubjectObject"
+  { query: "Researcher", tooltip: "Finds all instances of the class Researcher" },
+  { query: "Record", tooltip: "Finds all instances of the class Record (Transcripts, Notes, etc.)" },
+  { query: "Researcher and appliesMethod some Interview", tooltip: "Finds Researchers who apply at least one Interview method" },
+  { query: "ResearchProject and hasResearcher value Researcher_DrSmith", tooltip: "Finds ResearchProjects specifically conducted by Dr. Smith" },
+  { query: "SubjectObject and hasSubjectObjects some Record", tooltip: "Finds Subjects/Objects that have associated Records" },
+  { query: "Code and hasRelatedCode some Code", tooltip: "Finds Codes that are related to at least one other Code" },
+  { query: "AnalyticCategory or DescriptiveCategory", tooltip: "Finds anything that is either an Analytic Category OR a Descriptive Category" },
+  { query: "Record and isInterpreted some Interpretation", tooltip: "Finds Records that have been interpreted" },
+  { query: "GroundedTheory and hasElaboratedTheory some AnalyticCategory", tooltip: "Finds Grounded Theories that elaborate on at least one Analytic Category" },
+  { query: "FieldOfStudy and hasSubjectObjectApplication some SubjectObject", tooltip: "Finds Fields of Study applied to specific Subject Objects" }
 ];
 
 const MANCHESTER_KEYWORDS = ["and", "or", "not", "some", "only", "value", "min", "max", "exactly", "that", "inverse", "self", "has"];
@@ -194,17 +194,18 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
       <div className="bg-slate-50 border-b border-slate-100 p-3 shrink-0">
           <div className="flex items-center gap-1.5 mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wide">
               <Lightbulb size={12} className="text-amber-500" />
-              <span>Examples (Click to Run)</span>
+              <span>Examples (Hover for info)</span>
           </div>
           <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
               {DL_EXAMPLES.map((ex, idx) => (
                   <button 
                     key={idx}
-                    onClick={() => handleExecute(ex)}
+                    onClick={() => handleExecute(ex.query)}
                     disabled={isLoading}
+                    title={ex.tooltip}
                     className="flex-shrink-0 bg-white hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 text-[10px] px-2 py-1.5 rounded-md border border-slate-200 hover:border-emerald-200 transition-colors whitespace-nowrap text-left shadow-sm group"
                   >
-                      <SyntaxHighlighter text={ex} />
+                      <SyntaxHighlighter text={ex.query} />
                   </button>
               ))}
           </div>

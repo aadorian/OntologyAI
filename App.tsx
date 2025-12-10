@@ -4,10 +4,11 @@ import ForceGraph from './components/ForceGraph';
 import Sidebar from './components/Sidebar';
 import ChatInterface from './components/ChatInterface';
 import DLQueryInterface from './components/DLQueryInterface';
+import OntologyGuide from './components/OntologyGuide';
 import { parseOntology } from './utils/parser';
 import { ONTOLOGY_XML } from './constants'; // XML from user prompt
 import { GraphNode, GraphData } from './types';
-import { Network, Upload, Info, MessageSquare, BrainCircuit, Search } from 'lucide-react';
+import { Network, Upload, Info, MessageSquare, BrainCircuit, Search, Book } from 'lucide-react';
 
 const App: React.FC = () => {
   const [data, setData] = useState<GraphData>({ nodes: [], links: [] });
@@ -15,6 +16,7 @@ const App: React.FC = () => {
   const [xmlInput, setXmlInput] = useState<string>(ONTOLOGY_XML); 
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isDLQueryOpen, setIsDLQueryOpen] = useState(false);
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
   
   // Search State
   const [searchTerm, setSearchTerm] = useState('');
@@ -98,7 +100,18 @@ const App: React.FC = () => {
             </div>
         </form>
 
-        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
+        <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+             <button 
+                onClick={() => { setIsGuideOpen(true); }}
+                className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200"
+                title="Ontology Specification"
+             >
+                <Book size={18} />
+                <span className="hidden lg:inline">Spec</span>
+             </button>
+
+             <div className="h-6 w-px bg-slate-300 mx-1"></div>
+
              <button 
                 onClick={() => { setIsDLQueryOpen(!isDLQueryOpen); setIsChatOpen(false); }}
                 className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${isDLQueryOpen ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
@@ -160,6 +173,13 @@ const App: React.FC = () => {
             xmlData={xmlInput} 
             isOpen={isDLQueryOpen} 
             onClose={() => setIsDLQueryOpen(false)} 
+        />
+
+        {/* Ontology Guide Modal */}
+        <OntologyGuide 
+            isOpen={isGuideOpen}
+            onClose={() => setIsGuideOpen(false)}
+            xmlData={xmlInput} 
         />
         
         {/* Stats Overlay */}
