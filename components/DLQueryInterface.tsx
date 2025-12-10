@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
-import { BrainCircuit, Play, X, Loader2, HelpCircle, AlertCircle, Lightbulb, ExternalLink, Code2 } from 'lucide-react';
+import { BrainCircuit, Play, X, Loader2, HelpCircle, AlertCircle, Lightbulb, Code2 } from 'lucide-react';
 
 interface DLQueryInterfaceProps {
   xmlData: string;
@@ -29,6 +29,8 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
   const [result, setResult] = useState<{ subclasses: string[], instances: string[], explanation: string } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const backdropRef = useRef<HTMLDivElement>(null);
 
   const handleExecute = async (overrideExpression?: string) => {
     const exprToRun = overrideExpression || expression;
@@ -94,19 +96,26 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
     }
   };
 
-  const HighlightedSyntax = ({ text }: { text: string }) => {
+  const SyntaxHighlighter = ({ text, className = "" }: { text: string, className?: string }) => {
     // Basic tokenizer for Manchester syntax highlighting
     const parts = text.split(new RegExp(`\\b(${MANCHESTER_KEYWORDS.join("|")})\\b`, "gi"));
     return (
-        <div className="font-mono text-sm bg-white p-3 rounded border border-slate-200 shadow-inner break-words">
+        <span className={`font-mono ${className}`}>
             {parts.map((part, i) => {
                 if (MANCHESTER_KEYWORDS.includes(part.toLowerCase())) {
-                    return <span key={i} className="text-purple-700 font-bold">{part}</span>;
+                    return <span key={i} className="text-purple-600 font-bold">{part}</span>;
                 }
-                return <span key={i} className="text-slate-800">{part}</span>;
+                return <span key={i}>{part}</span>;
             })}
-        </div>
+        </span>
     );
+  };
+
+  const handleScroll = (e: React.UIEvent<HTMLTextAreaElement>) => {
+      if (backdropRef.current) {
+          backdropRef.current.scrollTop = e.currentTarget.scrollTop;
+          backdropRef.current.scrollLeft = e.currentTarget.scrollLeft;
+      }
   };
 
   if (!isOpen) return null;
@@ -136,7 +145,7 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
       </div>
 
       {/* Input Area */}
-      <div className="p-4 bg-white border-b border-slate-100 shrink-0">
+      <div className="p-4 bg-white border-b border-slate-100 shrink-0 z-10">
         <div className="flex justify-between items-end mb-2">
             <label className="block text-xs font-bold text-slate-500 uppercase tracking-wide">
                 Class Expression
@@ -144,12 +153,24 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
             <span className="text-[10px] text-slate-400 font-mono">Manchester Syntax</span>
         </div>
         
-        <div className="relative">
+        <div className="relative w-full h-24 group">
+            {/* Backdrop for highlighting */}
+            <div 
+                ref={backdropRef}
+                className="absolute inset-0 p-3 text-sm font-mono whitespace-pre-wrap break-words overflow-hidden bg-white border border-transparent rounded-lg text-slate-800 pointer-events-none"
+                aria-hidden="true"
+            >
+               <SyntaxHighlighter text={expression + (expression.endsWith('\n') ? ' ' : '')} />
+            </div>
+
+            {/* Actual Input */}
             <textarea
                 value={expression}
                 onChange={(e) => setExpression(e.target.value)}
+                onScroll={handleScroll}
+                spellCheck={false}
                 placeholder="e.g. Researcher and appliesMethod some Interview"
-                className="w-full h-24 p-3 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none font-mono text-slate-800 placeholder:text-slate-300 shadow-sm"
+                className="absolute inset-0 w-full h-full p-3 text-sm font-mono bg-transparent border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none text-transparent caret-slate-900 placeholder:text-slate-300 shadow-sm whitespace-pre-wrap break-words z-10"
                 onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
                         e.preventDefault();
@@ -157,10 +178,11 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
                     }
                 }}
             />
+
             <button
                 onClick={() => handleExecute()}
                 disabled={isLoading || !expression.trim()}
-                className="absolute bottom-3 right-3 bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md flex items-center gap-1"
+                className="absolute bottom-3 right-3 bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md flex items-center gap-1 z-20"
                 title="Execute Query"
             >
                 {isLoading ? <Loader2 size={16} className="animate-spin" /> : <Play size={16} fill="currentColor" />}
@@ -180,9 +202,9 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
                     key={idx}
                     onClick={() => handleExecute(ex)}
                     disabled={isLoading}
-                    className="flex-shrink-0 bg-white hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 text-[10px] px-2 py-1.5 rounded-md border border-slate-200 hover:border-emerald-200 transition-colors whitespace-nowrap font-mono shadow-sm"
+                    className="flex-shrink-0 bg-white hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 text-[10px] px-2 py-1.5 rounded-md border border-slate-200 hover:border-emerald-200 transition-colors whitespace-nowrap text-left shadow-sm group"
                   >
-                      {ex}
+                      <SyntaxHighlighter text={ex} />
                   </button>
               ))}
           </div>
@@ -206,7 +228,9 @@ const DLQueryInterface: React.FC<DLQueryInterfaceProps> = ({ xmlData, isOpen, on
         {executedQuery && result && (
              <div className="p-4 bg-white border-b border-slate-100">
                 <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-2">Executed Query</h4>
-                <HighlightedSyntax text={executedQuery} />
+                <div className="bg-slate-50 p-3 rounded border border-slate-200 shadow-inner">
+                    <SyntaxHighlighter text={executedQuery} className="text-sm text-slate-800" />
+                </div>
              </div>
         )}
 

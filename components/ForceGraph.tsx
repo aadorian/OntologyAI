@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { GraphData, GraphNode, GraphLink, NodeType } from '../types';
@@ -6,12 +7,17 @@ interface ForceGraphProps {
   data: GraphData;
   onNodeClick: (node: GraphNode | null) => void;
   selectedNodeId?: string | null;
+  zoomToNodeId?: string | null;
 }
 
-const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNodeId }) => {
+const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNodeId, zoomToNodeId }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
+  
+  // Refs to store D3 objects for programmatic access across effects
+  const zoomBehaviorRef = useRef<any>(null);
+  const svgSelectionRef = useRef<any>(null);
 
   // Update dimensions on resize
   useEffect(() => {
@@ -28,10 +34,15 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNode
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Main Graph Initialization
   useEffect(() => {
     if (!svgRef.current || !data.nodes.length) return;
 
-    const svg = d3.select(svgRef.current);
+    // Use d3 as any to bypass potential type definition issues in the environment
+    const _d3 = d3 as any;
+
+    const svg = _d3.select(svgRef.current);
+    svgSelectionRef.current = svg;
     svg.selectAll("*").remove(); // Clear previous render
 
     const { width, height } = dimensions;
@@ -40,22 +51,23 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNode
     const g = svg.append("g");
 
     // Zoom behavior
-    const zoom = d3.zoom<SVGSVGElement, unknown>()
+    const zoomBehavior = _d3.zoom()
       .scaleExtent([0.1, 4])
-      .on("zoom", (event) => {
+      .on("zoom", (event: any) => {
         g.attr("transform", event.transform);
       });
-
-    svg.call(zoom);
+    
+    zoomBehaviorRef.current = zoomBehavior;
+    svg.call(zoomBehavior);
 
     // Simulation setup
-    const simulation = d3.forceSimulation<GraphNode>(data.nodes)
-      .force("link", d3.forceLink<GraphNode, GraphLink>(data.links)
-        .id((d) => d.id)
+    const simulation = _d3.forceSimulation(data.nodes)
+      .force("link", _d3.forceLink(data.links)
+        .id((d: any) => d.id)
         .distance(150)) // Increased distance for labels
-      .force("charge", d3.forceManyBody().strength(-400))
-      .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collide", d3.forceCollide().radius(40));
+      .force("charge", _d3.forceManyBody().strength(-400))
+      .force("center", _d3.forceCenter(width / 2, height / 2))
+      .force("collide", _d3.forceCollide().radius(40));
 
     // Marker definition (Arrowheads)
     const defs = svg.append("defs");
@@ -93,8 +105,8 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNode
         .attr("fill", "#475569")
         .attr("text-anchor", "middle")
         .attr("dy", -4) // slight offset
-        .text(d => d.label)
-        .call(text => text.clone(true)
+        .text((d: any) => d.label)
+        .call((text: any) => text.clone(true)
             .lower()
             .attr("stroke", "white")
             .attr("stroke-width", 3)
@@ -110,29 +122,29 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNode
       .join("g")
       .attr("class", "node")
       .style("cursor", "pointer")
-      .on("click", (event, d) => {
+      .on("click", (event: any, d: GraphNode) => {
         event.stopPropagation();
         onNodeClick(d);
       })
-      .call(d3.drag<SVGGElement, GraphNode>()
+      .call(_d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended));
 
     // Node Shapes
     node.append("circle")
-      .attr("r", (d) => d.type === NodeType.Class ? 14 : 10)
-      .attr("fill", (d) => {
+      .attr("r", (d: GraphNode) => d.type === NodeType.Class ? 14 : 10)
+      .attr("fill", (d: GraphNode) => {
           if (d.type === NodeType.Class) return "#3b82f6"; // Blue
           if (d.type === NodeType.Individual) return "#10b981"; // Green
           return "#9ca3af"; // Grey
       })
-      .attr("stroke", (d) => d.id === selectedNodeId ? "#f59e0b" : "#fff") // Highlight selected
-      .attr("stroke-width", (d) => d.id === selectedNodeId ? 3 : 2);
+      .attr("stroke", (d: GraphNode) => d.id === selectedNodeId ? "#f59e0b" : "#fff") // Highlight selected
+      .attr("stroke-width", (d: GraphNode) => d.id === selectedNodeId ? 3 : 2);
 
     // Node Labels
     node.append("text")
-      .text((d) => d.label)
+      .text((d: GraphNode) => d.label)
       .attr("x", 16)
       .attr("y", 5)
       .attr("font-size", "12px")
@@ -144,36 +156,36 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNode
       .attr("pointer-events", "none"); 
 
     node.append("title")
-      .text((d) => `${d.type}: ${d.label}\n${d.fullUri}`);
+      .text((d: GraphNode) => `${d.type}: ${d.label}\n${d.fullUri}`);
 
     // Simulation tick update
     simulation.on("tick", () => {
       link
-        .attr("x1", (d) => (d.source as GraphNode).x!)
-        .attr("y1", (d) => (d.source as GraphNode).y!)
-        .attr("x2", (d) => (d.target as GraphNode).x!)
-        .attr("y2", (d) => (d.target as GraphNode).y!);
+        .attr("x1", (d: any) => (d.source as GraphNode).x!)
+        .attr("y1", (d: any) => (d.source as GraphNode).y!)
+        .attr("x2", (d: any) => (d.target as GraphNode).x!)
+        .attr("y2", (d: any) => (d.target as GraphNode).y!);
 
       linkLabels
-        .attr("x", (d) => ((d.source as GraphNode).x! + (d.target as GraphNode).x!) / 2)
-        .attr("y", (d) => ((d.source as GraphNode).y! + (d.target as GraphNode).y!) / 2);
+        .attr("x", (d: any) => ((d.source as GraphNode).x! + (d.target as GraphNode).x!) / 2)
+        .attr("y", (d: any) => ((d.source as GraphNode).y! + (d.target as GraphNode).y!) / 2);
 
       node
-        .attr("transform", (d) => `translate(${d.x},${d.y})`);
+        .attr("transform", (d: GraphNode) => `translate(${d.x},${d.y})`);
     });
 
-    function dragstarted(event: d3.D3DragEvent<SVGGElement, GraphNode, unknown>, d: GraphNode) {
+    function dragstarted(event: any, d: GraphNode) {
       if (!event.active) simulation.alphaTarget(0.3).restart();
       d.fx = d.x;
       d.fy = d.y;
     }
 
-    function dragged(event: d3.D3DragEvent<SVGGElement, GraphNode, unknown>, d: GraphNode) {
+    function dragged(event: any, d: GraphNode) {
       d.fx = event.x;
       d.fy = event.y;
     }
 
-    function dragended(event: d3.D3DragEvent<SVGGElement, GraphNode, unknown>, d: GraphNode) {
+    function dragended(event: any, d: GraphNode) {
       if (!event.active) simulation.alphaTarget(0);
       d.fx = null;
       d.fy = null;
@@ -188,6 +200,30 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ data, onNodeClick, selectedNode
       simulation.stop();
     };
   }, [data, dimensions, onNodeClick, selectedNodeId]);
+
+  // Programmatic Zoom Effect
+  useEffect(() => {
+    if (!zoomToNodeId || !data.nodes.length || !svgSelectionRef.current || !zoomBehaviorRef.current) return;
+
+    const _d3 = d3 as any;
+    const node = data.nodes.find(n => n.id === zoomToNodeId);
+    
+    // We check if node has x/y, implying simulation has run at least once
+    if (node && typeof node.x === 'number' && typeof node.y === 'number') {
+        const { width, height } = dimensions;
+        const scale = 1.5; // Target zoom level
+        
+        // Calculate the transform to center the node
+        const transform = _d3.zoomIdentity
+            .translate(width / 2, height / 2)
+            .scale(scale)
+            .translate(-node.x, -node.y);
+            
+        svgSelectionRef.current.transition()
+            .duration(1000) // 1 second smooth animation
+            .call(zoomBehaviorRef.current.transform, transform);
+    }
+  }, [zoomToNodeId, data.nodes, dimensions]);
 
   return (
     <div ref={containerRef} className="w-full h-full bg-slate-50 relative overflow-hidden">
