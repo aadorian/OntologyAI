@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
 import { Send, Sparkles, X, MessageSquare, Bot, User, Loader2, PlayCircle, Lightbulb } from 'lucide-react';
@@ -26,6 +27,93 @@ const EXAMPLE_QUERIES = [
   "Show the relationship between Analytic and Descriptive categories.",
   "List all Bibliography entries and what records they refer to."
 ];
+
+// Syntax Highlighting Helpers
+const SPARQL_KEYWORDS = ["SELECT", "WHERE", "FILTER", "OPTIONAL", "PREFIX", "LIMIT", "OFFSET", "ORDER", "BY", "DISTINCT", "UNION", "GRAPH", "SERVICE", "VALUES", "BIND", "AS", "FROM", "NAMED", "DESC", "ASC"];
+
+const HighlightedCode = ({ code }: { code: string }) => {
+  // Tokenize by variables, URIs, Strings, Keywords, or Punctuation
+  const parts = code.split(/(\?[\w\d]+|<[^>]+>|"[^"]*"|'[^']*'|\b(?:SELECT|WHERE|FILTER|OPTIONAL|PREFIX|LIMIT|OFFSET|ORDER|BY|DISTINCT|UNION|GRAPH|SERVICE|VALUES|BIND|AS|FROM|NAMED|DESC|ASC)\b|[{}()\.])/gi);
+  
+  return (
+    <pre className="bg-slate-900 text-slate-100 p-3 rounded-md overflow-x-auto text-xs font-mono my-3 border border-slate-700 shadow-sm">
+      <code>
+        {parts.map((part, i) => {
+           if (!part) return null;
+           const upper = part.toUpperCase();
+           if (SPARQL_KEYWORDS.includes(upper)) {
+               return <span key={i} className="text-purple-400 font-bold">{part}</span>;
+           }
+           if (part.startsWith('?')) {
+               return <span key={i} className="text-orange-300">{part}</span>; // Variable
+           }
+           if (part.startsWith('<') && part.endsWith('>')) {
+               return <span key={i} className="text-emerald-300 underline decoration-dotted decoration-emerald-500/30">{part}</span>; // URI
+           }
+           if (part.startsWith('"') || part.startsWith("'")) {
+               return <span key={i} className="text-yellow-200">{part}</span>; // String
+           }
+           if (['{', '}', '(', ')', '.'].includes(part)) {
+               return <span key={i} className="text-slate-400 font-bold">{part}</span>; // Punctuation
+           }
+           // Default
+           return <span key={i} className="text-slate-300">{part}</span>;
+        })}
+      </code>
+    </pre>
+  );
+};
+
+const FormattedMessage = ({ text }: { text: string }) => {
+    // Split by triple backticks for code blocks
+    const codeBlockRegex = /```(\w*)\n([\s\S]*?)```/g;
+    let lastIndex = 0;
+    let match;
+    const result = [];
+    
+    while ((match = codeBlockRegex.exec(text)) !== null) {
+        // Add text before code
+        if (match.index > lastIndex) {
+            const part = text.substring(lastIndex, match.index);
+            // Simple bold parser for **text**
+            const boldParts = part.split(/\*\*(.*?)\*\*/g);
+            result.push(
+                <span key={`text-${lastIndex}`} className="whitespace-pre-wrap">
+                    {boldParts.map((p, i) => i % 2 === 1 ? <strong key={i} className="font-semibold text-slate-900">{p}</strong> : p)}
+                </span>
+            );
+        }
+        
+        const lang = match[1];
+        const code = match[2];
+        
+        if (lang.toLowerCase() === 'sparql' || code.includes('SELECT') || code.includes('WHERE')) {
+             result.push(<HighlightedCode key={`code-${match.index}`} code={code} />);
+        } else {
+             // Generic code block
+             result.push(
+                <pre key={`code-${match.index}`} className="bg-slate-100 text-slate-800 p-3 rounded-md overflow-x-auto text-xs font-mono my-2 border border-slate-200">
+                    <code>{code}</code>
+                </pre>
+             );
+        }
+        
+        lastIndex = codeBlockRegex.lastIndex;
+    }
+    
+    // Add remaining text
+    if (lastIndex < text.length) {
+        const part = text.substring(lastIndex);
+        const boldParts = part.split(/\*\*(.*?)\*\*/g);
+        result.push(
+            <span key={`text-${lastIndex}`} className="whitespace-pre-wrap">
+                {boldParts.map((p, i) => i % 2 === 1 ? <strong key={i} className="font-semibold text-slate-900">{p}</strong> : p)}
+            </span>
+        );
+    }
+    
+    return <>{result}</>;
+};
 
 const ChatInterface: React.FC<ChatInterfaceProps> = ({ xmlData, isOpen, onClose }) => {
   const [input, setInput] = useState('');
@@ -69,7 +157,8 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ xmlData, isOpen, onClose 
         2. Generate a valid SPARQL query that would answer the question based on the ontology structure (Classes, Properties, Individuals). Use standard prefixes (rdf, rdfs, owl) and assume the base URI from the ontology.
         3. Provide the answer to the question in natural language, deriving it from the XML data provided.
         
-        Format your response nicely. Put the SPARQL query in a code block.
+        Format your response nicely. 
+        IMPORTANT: Put the SPARQL query in a markdown code block labeled 'sparql' (e.g. \`\`\`sparql ... \`\`\`).
       `;
 
       const response = await ai.models.generateContent({
@@ -113,12 +202,12 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ xmlData, isOpen, onClose 
             <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.role === 'user' ? 'bg-slate-200 text-slate-600' : 'bg-indigo-100 text-indigo-600'}`}>
               {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
             </div>
-            <div className={`max-w-[85%] rounded-lg p-3 text-sm leading-relaxed whitespace-pre-wrap ${
+            <div className={`max-w-[85%] rounded-lg p-3 text-sm leading-relaxed ${
               msg.role === 'user' 
                 ? 'bg-indigo-600 text-white shadow-sm' 
                 : 'bg-white border border-slate-200 text-slate-700 shadow-sm'
             }`}>
-              {msg.text}
+              <FormattedMessage text={msg.text} />
             </div>
           </div>
         ))}
