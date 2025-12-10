@@ -1,0 +1,5 @@
+{
+  "name": "Ontology Graph Viewer",
+  "description": "A visualization tool for RDF/OWL ontologies using D3 force-directed graphs. Explores classes, individuals, and their relationships dynamically.",
+  "requestFramePermissions": []
+}
