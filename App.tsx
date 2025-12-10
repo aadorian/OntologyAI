@@ -8,7 +8,7 @@ import OntologyGuide from './components/OntologyGuide';
 import { parseOntology } from './utils/parser';
 import { ONTOLOGY_XML } from './constants'; // XML from user prompt
 import { GraphNode, GraphData } from './types';
-import { Network, Upload, Info, MessageSquare, BrainCircuit, Search, Book } from 'lucide-react';
+import { Network, Upload, Info, MessageSquare, BrainCircuit, Search, Book, Download } from 'lucide-react';
 
 const App: React.FC = () => {
   const [data, setData] = useState<GraphData>({ nodes: [], links: [] });
@@ -49,6 +49,18 @@ const App: React.FC = () => {
       };
       reader.readAsText(file);
     }
+  };
+
+  const handleDownload = () => {
+    const blob = new Blob([xmlInput], { type: 'application/rdf+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ontology.rdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const handleSearch = (e: React.FormEvent) => {
@@ -129,10 +141,19 @@ const App: React.FC = () => {
                 <MessageSquare size={18} />
                 <span className="hidden md:inline">SPARQL Chat</span>
              </button>
+
+             <button 
+                onClick={handleDownload}
+                className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200"
+                title="Download Ontology (RDF/XML)"
+             >
+                <Download size={18} />
+                <span className="hidden md:inline">Save</span>
+             </button>
              
              <label className="flex items-center gap-2 cursor-pointer bg-slate-100 hover:bg-slate-200 transition-colors px-3 py-2 rounded-md text-sm font-medium text-slate-700" title="Upload RDF/XML">
                 <Upload size={18} />
-                <span className="hidden md:inline">Load XML</span>
+                <span className="hidden md:inline">Load</span>
                 <input type="file" accept=".xml,.rdf,.owl" onChange={handleFileUpload} className="hidden" />
              </label>
         </div>
